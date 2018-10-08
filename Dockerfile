@@ -2,7 +2,7 @@ FROM alpine:3.8
 
 LABEL maintainer="Balazs Nadasdi <yitsushi@protonmail.ch>"
 
-ENV VERSION "0.46"
+ENV VERSION "0.49"
 
 RUN apk add --no-cache curl git py-pygments && \
       curl -sL https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_Linux-64bit.tar.gz \
