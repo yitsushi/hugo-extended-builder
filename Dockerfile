@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.13
 
-LABEL maintainer="Balazs Nadasdi <yitsushi@protonmail.ch>"
+LABEL maintainer="Balazs Nadasdi <efertone@pm.me>"
 
-ENV VERSION "0.49"
+ENV VERSION "0.83.1"
 
-RUN apk add --no-cache curl git py-pygments && \
-      curl -sL https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_Linux-64bit.tar.gz \
+RUN apk add --no-cache curl git py-pygments libc6-compat libstdc++ && \
+      curl -sL https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_Linux-64bit.tar.gz \
             -o /tmp/hugo.tar.gz && \
       tar -xzf /tmp/hugo.tar.gz -C /tmp && \
       mv /tmp/hugo /usr/bin/hugo && \
