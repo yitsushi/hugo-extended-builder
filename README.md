@@ -43,7 +43,7 @@ The corresponding `Dockerfile`:
 ```
 FROM nginx:alpine
 
-LABEL maintainer="Balazs Nadasdi <yitsushi@protonmail.ch>"
+LABEL maintainer="Victoria Nadasdi <efertone@pm.me>"
 
 COPY public /usr/share/nginx/html
 ```
