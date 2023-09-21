@@ -28,11 +28,13 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
+      - name: Extract metadata for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags:
+            type=semver,pattern={{version}},value=${{ inputs.hugo_version }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -40,5 +42,5 @@ jobs:
           push: true
           build-args: |
             VERSION=${{ inputs.hugo_version }}
-          tags: ${{ inputs.hugo_version }}
-          labels: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ inputs.hugo_version }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
